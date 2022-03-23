@@ -14,7 +14,7 @@ const tourSchema = new Schema({
   },
   difficulty: {
     type: String,
-    enum: ['easy', 'medium', 'hard'],
+    enum: ['easy', 'medium', 'difficult'],
   },
   ratingsAverage: Number,
   ratingsQuantity: Number,
