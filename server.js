@@ -1,0 +1,39 @@
+const mongoose = require('mongoose');
+const server = require('./app.js');
+const dotenv = require('dotenv');
+//BY DEFAULT BY2RA .ENV
+dotenv.config('.env');
+mongoose
+  .connect(process.env.DB_URL)
+  .then((con) => {
+    console.log('db connected');
+  })
+  .catch((err) => {
+    console.log('error', err);
+  });
+
+//3shan a3f agbhom mn env
+const { PORT, HOST, DB_URL } = process.env;
+
+// const tourSchema = new mongoose.Schema({
+//   name: String,
+//   duration: Number,
+//   price: Number,
+// });
+
+// const Tour = mongoose.model('tour', tourSchema);
+
+// const firstTour = new Tour({
+//   name: 'first tour222',
+//   duration: 10,
+//   price: 500,
+// });
+
+// firstTour
+//   .save()
+//   .then((doc) => console.log(doc))
+//   .catch((err) => console.log(err));
+
+server.listen(PORT, () => {
+  console.log('server is running');
+});
