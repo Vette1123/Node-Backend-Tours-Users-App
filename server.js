@@ -3,8 +3,9 @@ const server = require('./app.js');
 const dotenv = require('dotenv');
 //BY DEFAULT BY2RA .ENV
 dotenv.config('.env');
+const { PORT, HOST, DB_URL } = process.env;
 mongoose
-  .connect(process.env.DB_URL)
+  .connect(DB_URL)
   .then((con) => {
     console.log('db connected');
   })
@@ -13,7 +14,6 @@ mongoose
   });
 
 //3shan a3f agbhom mn env
-const { PORT, HOST, DB_URL } = process.env;
 
 // const tourSchema = new mongoose.Schema({
 //   name: String,
@@ -34,6 +34,6 @@ const { PORT, HOST, DB_URL } = process.env;
 //   .then((doc) => console.log(doc))
 //   .catch((err) => console.log(err));
 
-server.listen(PORT, () => {
+server.listen(PORT, HOST, () => {
   console.log('server is running');
 });
