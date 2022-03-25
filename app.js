@@ -13,9 +13,9 @@ server.use(express.static(`${__dirname}/public`));
 
 server.use('/api/v1/users', usersRouter);
 server.use('/api/v1/tours', toursRouter);
-server.use('/api/v1', authRouter);
+server.use('/api/', authRouter);
 corsOptions = {
-  origin: 'http://pornhub.com',
+  origin: 'http://hmada.com',
 };
 //to handle any url except tours & users
 
