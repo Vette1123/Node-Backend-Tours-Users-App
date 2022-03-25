@@ -1,7 +1,5 @@
 const express = require('express');
-const TOURS = require('../../dev-data/data/tours-simple.json');
 const router = express.Router();
-const TOUR = require('../../models/Tour');
 const {
   getAllTours,
   getTourByID,

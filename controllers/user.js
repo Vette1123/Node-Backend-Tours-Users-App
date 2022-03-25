@@ -1,5 +1,4 @@
 const User = require('../models/User');
-const { catchAsync } = require('../utils/utils');
 
 module.exports = {
   getAllUsers: async (req, res) => {
@@ -19,6 +18,25 @@ module.exports = {
     res.json({
       status: 'success',
       data: user,
+    });
+  },
+  deleteUser: async (req, res, next) => {
+    await User.findByIdAndUpdate(req.user.id, { active: false });
+    res.status(204).json({
+      status: 'success',
+      data: null,
+    });
+  },
+  updateUser: async (req, res, next) => {
+    const updatedUser = await User.findByIdAndUpdate(req.user.id, {
+      new: true,
+      runValidators: true,
+    });
+    res.status(200).json({
+      status: 'success',
+      data: {
+        user: updatedUser,
+      },
     });
   },
   uploadAvatar: (req, res) => {

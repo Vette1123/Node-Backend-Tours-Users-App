@@ -12,20 +12,6 @@ module.exports = {
     next();
   },
   getAllTours: (req, res) => {
-    //   res.send('all users');
-    // console.log('listing all users');
-    // res.json(TOURS);
-
-    // or async and await
-    //try{
-    //const tours = await TOUR.find();
-    //res.json({
-    //status:'sucess",
-    //data:tours,
-    //})
-    //res.json(tours);
-    //catch(error){}
-    //}
     TOUR.find()
       .then((data) => {
         let query = JSON.stringify(req.query);

@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 const { isEmail } = require('validator');
-const { hash } = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 const userSchema = new Schema(
   {
     name: {
@@ -17,20 +17,26 @@ const userSchema = new Schema(
       type: String,
       required: true,
       min: 6,
+      //to never show the password, even its encrypted 'select:false'
     },
     avatar: String,
   },
-
   { timestamps: true }
 );
 
 userSchema.pre('save', async function (next) {
   console.log('before', this.password);
-  this.password = await hash(this.password, 12);
+  this.password = await bcrypt.hash(this.password, 12);
   console.log('after', this.password);
   next();
 });
 
-const User = model('User', userSchema);
+userSchema.methods.correctPassword = async function (
+  candidatePassword,
+  userPassword
+) {
+  return await bcrypt.compare(candidatePassword, userPassword);
+};
 
+const User = model('User', userSchema);
 module.exports = User;
