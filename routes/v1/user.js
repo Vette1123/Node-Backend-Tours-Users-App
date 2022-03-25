@@ -7,11 +7,12 @@ const {
   deleteUser,
   updateUser,
   uploadAvatar,
+  getUserById,
 } = require('../../controllers/user');
 
 const upload = require('../../utils/file-storage');
 
-usersRouter.get('/', getAllUsers);
+usersRouter.get('/', getAllUsers).get('/:id', getUserById);
 usersRouter.post('/', createUser);
 
 usersRouter.patch('/:id', updateUser);

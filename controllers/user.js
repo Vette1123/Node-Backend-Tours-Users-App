@@ -8,6 +8,17 @@ module.exports = {
       data: users,
     });
   },
+  getUserById: async (req, res) => {
+    const { id } = req.params;
+    const user = await User.findById(id);
+    if (user === null) {
+      return next({ status: 'failure', message: 'tour not found' });
+    }
+    res.json({
+      status: 'success',
+      data: user,
+    });
+  },
   createUser: async (req, res) => {
     const { name, email, password } = req.body;
     const user = await User.create({
