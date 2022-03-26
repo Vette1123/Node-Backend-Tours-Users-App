@@ -12,7 +12,7 @@ module.exports = {
     const { id } = req.params;
     const user = await User.findById(id);
     if (user === null) {
-      return next({ status: 'failure', message: 'tour not found' });
+      return next({ status: 'failure', message: 'user not found' });
     }
     res.json({
       status: 'success',
