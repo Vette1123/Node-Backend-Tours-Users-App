@@ -12,7 +12,7 @@ module.exports = {
     const { id } = req.params;
     const user = await User.findById(id);
     if (user === null) {
-      return next({ status: 'failure', message: 'tour not found' });
+      return next({ status: 'failure', message: 'User was not found' });
     }
     res.json({
       status: 'success',
@@ -50,9 +50,10 @@ module.exports = {
       },
     });
   },
-  uploadAvatar: (req, res) => {
-    const user = User.findByIdAndUpdate(
-      req.userId,
+  uploadAvatar: async (req, res) => {
+    const user = await User.findByIdAndUpdate(
+      // req.userId,
+      '623dd79c056c715783dd2408',
       { avatar: req.file.path },
       { new: true }
     );

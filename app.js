@@ -8,7 +8,9 @@ const authRouter = require('./routes/v1/auth');
 const cors = require('cors');
 const multer = require('multer');
 const morgan = require('morgan');
-const upload = multer({ dest: `${__dirname}/public/storage` });
+const { append } = require('express/lib/response');
+const res = require('express/lib/response');
+// const upload = multer({ dest: `${__dirname}/public/storage` });
 
 server.use(express.json());
 //to serve static pages in public directory
@@ -22,10 +24,10 @@ server.use('/api/v1/tours', toursRouter);
 server.use('/api/', authRouter);
 
 //to handle any url except tours & users
-corsOptions = {
-  origin: 'http://hmada.com',
-};
-
+// append.use(cors());
+// corsOptions = {
+//   origin: 'http://hmada.com',
+// };
 server.all('*', (req, res) => {
   res.json({ status: 'failure', message: 'Wrong Url' });
 });

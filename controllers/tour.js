@@ -39,15 +39,13 @@ module.exports = {
     //fe option f find by id and update asmo new: true 3shan y3dl f l 7aga bt3ty
     const tour = await TOUR.findByIdAndUpdate(id, req.body, { new: true });
     res.json({
-      status: 'success',
+      status: 'Success, Tour updated',
       data: tour,
     });
-    console.log('user updated');
   }),
   deleteTour: catchAsync(async (req, res) => {
     const { id } = req.params;
     await TOUR.findByIdAndDelete(id);
-    res.status(204).json({ message: 'Success' });
-    console.log('user deleted');
+    res.status(204).json({ message: 'Success, Tour deleted' });
   }),
 };

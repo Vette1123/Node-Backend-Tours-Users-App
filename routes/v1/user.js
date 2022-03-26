@@ -18,5 +18,5 @@ usersRouter.post('/', createUser);
 usersRouter.patch('/:id', updateUser);
 usersRouter.delete('/:id', deleteUser);
 
-usersRouter.post('/photo', upload.single(), uploadAvatar);
+usersRouter.post('/photo', upload.single('image'), uploadAvatar);
 module.exports = usersRouter;
